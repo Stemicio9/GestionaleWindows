@@ -47,7 +47,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label1);
             this.Name = "Fatture";
-            this.Size = new System.Drawing.Size(1306, 493);
+            this.Size = new System.Drawing.Size(1458, 700);
             this.ResumeLayout(false);
             this.PerformLayout();
 

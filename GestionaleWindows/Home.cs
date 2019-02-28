@@ -14,7 +14,9 @@ namespace GestionaleWindows
     {
         public Home()
         {
+            ValoriStatici.prendibolle();
             InitializeComponent();
+        
         }
 
         private void click(object sender, EventArgs e)
@@ -79,6 +81,7 @@ namespace GestionaleWindows
         ListaFatture listafatture = new ListaFatture();
         Articoli articoli = new Articoli();
         Clienti clienti = new Clienti();
+        Informazioni info = new Informazioni();
 
         private void settaTuttoInvisibile()
         {
@@ -89,6 +92,8 @@ namespace GestionaleWindows
             listafatture.Visible = false;
             articoli.Visible = false;
             clienti.Visible = false;
+
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -148,6 +153,12 @@ namespace GestionaleWindows
             pannellocentrale.Controls.Add(clienti);
         }
 
-
+        private void button9_Click(object sender, EventArgs e)
+        {
+            settaTuttoInvisibile();
+            pannellocentrale.Controls.Clear();
+            info.Visible = true;
+            pannellocentrale.Controls.Add(info);
+        }
     }
 }

@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.Protobuf">
       <HintPath>..\..\..\..\Desktop\connector net\v4.5.2\Google.Protobuf.dll</HintPath>
@@ -64,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bolla.cs" />
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,12 +118,13 @@
     <Compile Include="Clienti.Designer.cs">
       <DependentUpon>Clienti.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl1.cs">
+    <Compile Include="Informazioni.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <Compile Include="Informazioni.Designer.cs">
+      <DependentUpon>Informazioni.cs</DependentUpon>
     </Compile>
+    <Compile Include="ValoriStatici.cs" />
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Informazioni.resx">
+      <DependentUpon>Informazioni.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListaBolle.resx">
       <DependentUpon>ListaBolle.cs</DependentUpon>

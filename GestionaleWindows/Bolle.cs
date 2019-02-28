@@ -40,7 +40,7 @@ namespace GestionaleWindows
             textboxcliente.AutoCompleteMode = AutoCompleteMode.Suggest;
             textboxcliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-          
+            
         }
 
 
@@ -58,8 +58,15 @@ namespace GestionaleWindows
         DataTable prezzocliente = new DataTable();
 
 
+        DataTable clientedestinazione = new DataTable();
+
+        MySql.Data.MySqlClient.MySqlDataAdapter destinazioniadapter = new MySql.Data.MySqlClient.MySqlDataAdapter();
+        MySql.Data.MySqlClient.MySqlCommandBuilder destinazionibuilder;
+
+
         public void metodo()
         {
+            articoli.Clear();
             try
             {
                 string connessione = "Server=localhost;Database=backend;Uid=root;Pwd=root;";
@@ -194,6 +201,11 @@ namespace GestionaleWindows
             {
                 // String selItem = this.textBox1.Text;
                 metodo();
+                prendidestinazionicliente(textboxcliente.Text);
+                riempipartitaiva(textboxcliente.Text);
+
+                string ultimabollacreata = ValoriStatici.prendiultimonumerobolla();
+                ultimabollacreatalabel.Text = ultimabollacreata;
                 textBox1.Focus();
             }
         }
@@ -202,6 +214,109 @@ namespace GestionaleWindows
         {
             adapter.Update(articoli);
             MessageBox.Show("SALVATO");
+        }
+
+
+
+
+        public void prendidestinazionicliente(string cliente)
+        {
+
+            clientedestinazione.Clear();
+            try
+            {
+                string connessione = "Server=localhost;Database=backend;Uid=root;Pwd=root;";
+                conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
+                conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
+                cmd.CommandText = "Select * from cliente_destinazione where nomecliente = @nomecli";
+                cmd.Parameters.AddWithValue("@nomecli", cliente);
+                cmd.Connection = conn;
+                destinazioniadapter.SelectCommand = cmd;
+                destinazioniadapter.Fill(clientedestinazione);
+                destinazionibuilder = new MySql.Data.MySqlClient.MySqlCommandBuilder(destinazioniadapter);
+            
+
+                AutoCompleteStringCollection namesCollection = new AutoCompleteStringCollection();
+                foreach (DataRow row in clientedestinazione.Rows)
+                {
+                    namesCollection.Add(row["indirizzo"].ToString());
+                }
+
+                destinazionetextbox.AutoCompleteCustomSource = namesCollection;
+                destinazionetextbox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                destinazionetextbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                
+                conn.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException e)
+            {
+                conn.Close();
+                throw;
+            }
+        }
+
+        public void riempipartitaiva(string nomecliente)
+        {
+
+            string piva = prendipivacliente(nomecliente);
+            textboxpartitaiva.Text = piva;
+
+            
+        }
+
+        public string prendipivacliente(string cliente)
+        {
+            string piva;
+            try
+            {
+                string connessione = "Server=localhost;Database=backend;Uid=root;Pwd=root;";
+                conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
+                conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
+                cmd.CommandText = "Select piva from cliente_piva where nomecliente = @nomecli";
+                cmd.Parameters.AddWithValue("@nomecli", cliente);
+                cmd.Connection = conn;
+                piva = (string) cmd.ExecuteScalar();
+
+                conn.Close();
+
+                return piva;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException e)
+            {
+                conn.Close();
+                throw;
+            }
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void checkselezionato(object sender, EventArgs e)
+        {
+        }
+
+
+        private void salvabolla(object sender, EventArgs e)
+        {
+            Bolla b = new Bolla();
+            b.numerodocumento = textboxnumerobolla.Text;
+            b.datadocumento = datascelta.Value;
+            b.nomecliente = textboxcliente.Text;
+            b.indirizzo = destinazionetextbox.Text;
+            b.cap = "";
+            b.piva = textboxpartitaiva.Text;
+            b.telefono = "";
+            b.peso = Double.Parse(textboxpeso.Text);
+            b.numerocolli = int.Parse(textboxnumerocolli.Text);
+            b.mezzo = listacheck.SelectedItem.ToString();
+            b.impacchettamento = textboxaspettobeni.Text;
+
+            ValoriStatici.aggiungibolla(b);
+            ValoriStatici.inseriscirighe(scelti,b.numerodocumento,b.datadocumento);
+
         }
     }
 }
