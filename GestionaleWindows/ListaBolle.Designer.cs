@@ -33,6 +33,7 @@
             this.datagridrighe = new System.Windows.Forms.DataGridView();
             this.bollefatturatecheck = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.textboxfiltrobolle = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.datagridbolle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datagridrighe)).BeginInit();
             this.SuspendLayout();
@@ -70,12 +71,13 @@
             // 
             this.bollefatturatecheck.AutoSize = true;
             this.bollefatturatecheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bollefatturatecheck.Location = new System.Drawing.Point(10, 78);
+            this.bollefatturatecheck.Location = new System.Drawing.Point(10, 45);
             this.bollefatturatecheck.Name = "bollefatturatecheck";
             this.bollefatturatecheck.Size = new System.Drawing.Size(229, 29);
             this.bollefatturatecheck.TabIndex = 3;
             this.bollefatturatecheck.Text = "BOLLE FATTURATE";
             this.bollefatturatecheck.UseVisualStyleBackColor = true;
+            this.bollefatturatecheck.CheckedChanged += new System.EventHandler(this.checkboxcliccata);
             // 
             // label2
             // 
@@ -87,10 +89,20 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Righe bolla selezionata";
             // 
+            // textboxfiltrobolle
+            // 
+            this.textboxfiltrobolle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textboxfiltrobolle.Location = new System.Drawing.Point(0, 80);
+            this.textboxfiltrobolle.Name = "textboxfiltrobolle";
+            this.textboxfiltrobolle.Size = new System.Drawing.Size(736, 31);
+            this.textboxfiltrobolle.TabIndex = 5;
+            this.textboxfiltrobolle.TextChanged += new System.EventHandler(this.testocambiato);
+            // 
             // ListaBolle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.textboxfiltrobolle);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.bollefatturatecheck);
             this.Controls.Add(this.datagridrighe);
@@ -112,5 +124,6 @@
         private System.Windows.Forms.DataGridView datagridrighe;
         private System.Windows.Forms.CheckBox bollefatturatecheck;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textboxfiltrobolle;
     }
 }

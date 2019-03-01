@@ -124,6 +124,24 @@
     <Compile Include="Informazioni.Designer.cs">
       <DependentUpon>Informazioni.cs</DependentUpon>
     </Compile>
+    <Compile Include="FatturaControllo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FatturaControllo.Designer.cs">
+      <DependentUpon>FatturaControllo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotaCreditoControllo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NotaCreditoControllo.Designer.cs">
+      <DependentUpon>NotaCreditoControllo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotaDebitoControllo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NotaDebitoControllo.Designer.cs">
+      <DependentUpon>NotaDebitoControllo.cs</DependentUpon>
+    </Compile>
     <Compile Include="ValoriStatici.cs" />
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
@@ -139,6 +157,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListaBolle.resx">
       <DependentUpon>ListaBolle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotaCreditoControllo.resx">
+      <DependentUpon>NotaCreditoControllo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotaDebitoControllo.resx">
+      <DependentUpon>NotaDebitoControllo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -160,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Clienti.resx">
       <DependentUpon>Clienti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FatturaControllo.resx">
+      <DependentUpon>FatturaControllo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

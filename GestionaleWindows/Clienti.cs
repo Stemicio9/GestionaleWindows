@@ -19,6 +19,9 @@ namespace GestionaleWindows
             datagridclienti.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
+
+        string connessione = "Server=localhost;Database=" + ValoriStatici.NOME_DATABASE + ";Uid=root;Pwd=root;";
+
         MySql.Data.MySqlClient.MySqlConnection conn;
         DataTable clienti = new DataTable();
 
@@ -43,7 +46,7 @@ namespace GestionaleWindows
         {
             try
             {
-                string connessione = "Server=localhost;Database=backend;Uid=root;Pwd=root;";
+              
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
                 conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
@@ -79,7 +82,7 @@ namespace GestionaleWindows
             clientedestinazione.Clear();
             try
             {
-                string connessione = "Server=localhost;Database=backend;Uid=root;Pwd=root;";
+              
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
                 conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
@@ -105,7 +108,6 @@ namespace GestionaleWindows
             clientepiva.Clear();
             try
             {
-                string connessione = "Server=localhost;Database=backend;Uid=root;Pwd=root;";
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
                 conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
@@ -131,7 +133,6 @@ namespace GestionaleWindows
             clienteemail.Clear();
             try
             {
-                string connessione = "Server=localhost;Database=backend;Uid=root;Pwd=root;";
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
                 conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();

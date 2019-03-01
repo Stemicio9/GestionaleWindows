@@ -29,11 +29,14 @@ namespace GestionaleWindows
         MySql.Data.MySqlClient.MySqlCommandBuilder informazionibuilder;
 
 
+        string connessione = "Server=localhost;Database=" + ValoriStatici.NOME_DATABASE + ";Uid=root;Pwd=root;";
+
+
         public void prendiinformazioni()
         {
             try
             {
-                string connessione = "Server=localhost;Database=backend;Uid=root;Pwd=root;";
+          
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
                 conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();

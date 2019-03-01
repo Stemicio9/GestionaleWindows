@@ -15,6 +15,7 @@ namespace GestionaleWindows
         public Home()
         {
             ValoriStatici.prendibolle();
+            ValoriStatici.prendibollefatturate();
             InitializeComponent();
         
         }

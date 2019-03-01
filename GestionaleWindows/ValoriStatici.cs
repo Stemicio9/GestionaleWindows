@@ -13,18 +13,26 @@ namespace GestionaleWindows
 
         public static string NOME_DATABASE = "backend";
 
+        static string connessione = "Server=localhost;Database=" + NOME_DATABASE + ";Uid=root;Pwd=root;";
+
         public static DataTable bolle = new DataTable();
 
         static MySql.Data.MySqlClient.MySqlConnection conn;
         static MySql.Data.MySqlClient.MySqlDataAdapter bolleadapter = new MySql.Data.MySqlClient.MySqlDataAdapter();
         static MySql.Data.MySqlClient.MySqlCommandBuilder bollebuilder;
 
+        public static DataTable bollefatturate = new DataTable();
+        static MySql.Data.MySqlClient.MySqlDataAdapter bollefatturateadapter = new MySql.Data.MySqlClient.MySqlDataAdapter();
+        static MySql.Data.MySqlClient.MySqlCommandBuilder bollefatturatebuilder;
+
+
+
 
         public static void prendibolle()
         {
             try
             {
-                string connessione = "Server=localhost;Database=backend;Uid=root;Pwd=root;";
+        
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
                 conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
@@ -33,6 +41,28 @@ namespace GestionaleWindows
                 bolleadapter.SelectCommand = cmd;
                 bolleadapter.Fill(bolle);
                 bollebuilder = new MySql.Data.MySqlClient.MySqlCommandBuilder(bolleadapter);
+                conn.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException e)
+            {
+                conn.Close();
+                throw;
+            }
+        }
+
+        public static void prendibollefatturate()
+        {
+            try
+            {
+  
+                conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
+                conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
+                cmd.CommandText = "Select * from bolla_fatturata";
+                cmd.Connection = conn;
+                bollefatturateadapter.SelectCommand = cmd;
+                bollefatturateadapter.Fill(bollefatturate);
+                bollefatturatebuilder = new MySql.Data.MySqlClient.MySqlCommandBuilder(bollefatturateadapter);
                 conn.Close();
             }
             catch (MySql.Data.MySqlClient.MySqlException e)
@@ -104,7 +134,7 @@ namespace GestionaleWindows
 
             try
             {
-                string connessione = "Server=localhost;Database="+NOME_DATABASE+";Uid=root;Pwd=root;";
+ 
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
                 conn.Open();
 

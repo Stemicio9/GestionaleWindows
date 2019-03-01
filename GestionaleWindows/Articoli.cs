@@ -25,6 +25,9 @@ namespace GestionaleWindows
         DataTable articoli = new DataTable();
 
 
+        string connessione = "Server=localhost;Database=" + ValoriStatici.NOME_DATABASE + ";Uid=root;Pwd=root;";
+
+
         MySql.Data.MySqlClient.MySqlDataAdapter articoliadapter = new MySql.Data.MySqlClient.MySqlDataAdapter();
         MySql.Data.MySqlClient.MySqlCommandBuilder articolibuilder;
 
@@ -39,7 +42,7 @@ namespace GestionaleWindows
         {
             try
             {
-                string connessione = "Server=localhost;Database=backend;Uid=root;Pwd=root;";
+               
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
                 conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
@@ -81,7 +84,6 @@ namespace GestionaleWindows
             prezzoadhoc.Clear();
             try
             {
-                string connessione = "Server=localhost;Database=backend;Uid=root;Pwd=root;";
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
                 conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
@@ -120,5 +122,9 @@ namespace GestionaleWindows
 
         }
 
+        private void datagridprezziadhoc_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

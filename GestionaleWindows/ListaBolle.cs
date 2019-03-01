@@ -24,6 +24,10 @@ namespace GestionaleWindows
         MySql.Data.MySqlClient.MySqlDataAdapter rigabollaadapter = new MySql.Data.MySqlClient.MySqlDataAdapter();
         MySql.Data.MySqlClient.MySqlCommandBuilder rigabollabuilder;
 
+       
+
+        string connessione = "Server=localhost;Database=" + ValoriStatici.NOME_DATABASE + ";Uid=root;Pwd=root;";
+
         private void bollaselezionata(object sender, EventArgs e)
         {
             if (datagridbolle.SelectedRows.Count > 0)
@@ -40,7 +44,7 @@ namespace GestionaleWindows
             righebolla.Rows.Clear();
             try
             {
-                string connessione = "Server=localhost;Database=backend;Uid=root;Pwd=root;";
+ 
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
                 conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
@@ -60,6 +64,24 @@ namespace GestionaleWindows
                 throw;
             }
 
+        }
+
+        private void testocambiato(object sender, EventArgs e)
+        {
+            (datagridbolle.DataSource as DataTable).DefaultView.RowFilter = string.Format("numerodocumento like '%{0}%' or nomecliente like '%{0}%'", textboxfiltrobolle.Text.Trim().Replace("'", "''"));
+            datagridbolle.Refresh();
+        }
+
+        private void checkboxcliccata(object sender, EventArgs e)
+        {
+            if(bollefatturatecheck.Checked == true)
+            {
+                datagridbolle.DataSource = ValoriStatici.bollefatturate;
+            }
+            else
+            {
+                datagridbolle.DataSource = ValoriStatici.bolle;
+            }
         }
     }
 }

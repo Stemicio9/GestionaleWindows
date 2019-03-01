@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace GestionaleWindows
 {
-    public partial class Bolle : UserControl
+    public partial class FatturaControllo : UserControl
     {
-        public Bolle()
+        public FatturaControllo()
         {
             InitializeComponent();
             prendiclienti();
-         //   metodo();
+            //   metodo();
             scelti.Columns.Add("codicearticolo", typeof(String));
             scelti.Columns.Add("nomearticolo", typeof(String));
             scelti.Columns.Add("prezzolistino", typeof(Decimal));
@@ -32,21 +32,22 @@ namespace GestionaleWindows
             listaarticoliscelti.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             this.VisibleChanged += new EventHandler(this.visibile);
             AutoCompleteStringCollection namesCollection = new AutoCompleteStringCollection();
-            foreach (DataRow row in clienti.Rows){
+            foreach (DataRow row in clienti.Rows)
+            {
                 namesCollection.Add(row["nomecliente"].ToString());
             }
 
-            textboxcliente.AutoCompleteCustomSource = namesCollection;
-            textboxcliente.AutoCompleteMode = AutoCompleteMode.Suggest;
-            textboxcliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            textBox3.AutoCompleteCustomSource = namesCollection;
+            textBox3.AutoCompleteMode = AutoCompleteMode.Suggest;
+            textBox3.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-            
+
         }
 
 
 
         public void visibile(object sender, EventArgs e)
-        {   
+        {
             textBox1.Focus();
         }
 
@@ -72,29 +73,29 @@ namespace GestionaleWindows
             articoli.Clear();
             try
             {
-  
+
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
                 conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
                 cmd.CommandText = "Select * from articolo";
                 cmd.Connection = conn;
-                adapter.SelectCommand = cmd;            
+                adapter.SelectCommand = cmd;
                 adapter.Fill(articoli);
                 cmbl = new MySql.Data.MySqlClient.MySqlCommandBuilder(adapter);
                 dataGridView1.DataSource = articoli;
                 cmd = new MySql.Data.MySqlClient.MySqlCommand();
-                string nomecli = textboxcliente.Text;
+                string nomecli = textBox3.Text;
                 string piva = getPartitaIvaDiCliente(nomecli);
                 cmd.CommandText = "Select * from prezzo_articolo_cliente where nomecliente = @nomecli";
-                cmd.Parameters.AddWithValue("@nomecli",piva);
+                cmd.Parameters.AddWithValue("@nomecli", piva);
                 cmd.Connection = conn;
                 adapter.SelectCommand = cmd;
                 adapter.Fill(prezzocliente);
                 conn.Close();
 
-                foreach(DataRow row in prezzocliente.Rows)
+                foreach (DataRow row in prezzocliente.Rows)
                 {
-                    foreach(DataRow art in articoli.Rows)
+                    foreach (DataRow art in articoli.Rows)
                     {
                         if (art["codicearticolo"].Equals(row["codicearticolo"]))
                         {
@@ -116,7 +117,7 @@ namespace GestionaleWindows
         {
             try
             {
-              
+
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
                 conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
@@ -139,7 +140,7 @@ namespace GestionaleWindows
             string result;
             try
             {
-              
+
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
                 conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
@@ -158,12 +159,6 @@ namespace GestionaleWindows
             return result;
         }
 
-        private void testocambiato(object sender, EventArgs e)
-        {
-            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Format("codicearticolo like '%{0}%'", textBox1.Text.Trim().Replace("'", "''"));
-            dataGridView1.Refresh();
-        }
-
         private void tastopremutosucodicearticolo(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Return)
@@ -178,12 +173,12 @@ namespace GestionaleWindows
             {
                 DataRow row = scelti.NewRow();
                 var arr = (dataGridView1.DataSource as DataTable).DefaultView.ToTable().Rows[0].ItemArray;
-                row.SetField("codicearticolo",arr[0]);
+                row.SetField("codicearticolo", arr[0]);
                 row.SetField("nomearticolo", arr[1]);
                 row.SetField("prezzolistino", arr[2]);
                 row.SetField("unitamisura", arr[3]);
                 row.SetField("iva", arr[4]);
-                row.SetField("quantita",maskedTextBox1.Text);
+                row.SetField("quantita", maskedTextBox1.Text);
                 scelti.Rows.Add(row);
                 textBox1.Text = "";
                 maskedTextBox1.Text = "";
@@ -196,21 +191,6 @@ namespace GestionaleWindows
                 e.Handled = true;
             }
 
-        }
-
-        private void selezionato(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == Keys.Enter)
-            {
-                // String selItem = this.textBox1.Text;
-                metodo();
-                prendidestinazionicliente(textboxcliente.Text);
-                riempipartitaiva(textboxcliente.Text);
-
-                string ultimabollacreata = ValoriStatici.prendiultimonumerobolla();
-                ultimabollacreatalabel.Text = ultimabollacreata;
-                textBox1.Focus();
-            }
         }
 
         private void salvaarticolo(object sender, EventArgs e)
@@ -228,7 +208,7 @@ namespace GestionaleWindows
             clientedestinazione.Clear();
             try
             {
-              
+
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
                 conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
@@ -238,7 +218,7 @@ namespace GestionaleWindows
                 destinazioniadapter.SelectCommand = cmd;
                 destinazioniadapter.Fill(clientedestinazione);
                 destinazionibuilder = new MySql.Data.MySqlClient.MySqlCommandBuilder(destinazioniadapter);
-            
+
 
                 AutoCompleteStringCollection namesCollection = new AutoCompleteStringCollection();
                 foreach (DataRow row in clientedestinazione.Rows)
@@ -249,7 +229,7 @@ namespace GestionaleWindows
                 destinazionetextbox.AutoCompleteCustomSource = namesCollection;
                 destinazionetextbox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 destinazionetextbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                
+
                 conn.Close();
             }
             catch (MySql.Data.MySqlClient.MySqlException e)
@@ -265,7 +245,7 @@ namespace GestionaleWindows
             string piva = prendipivacliente(nomecliente);
             textboxpartitaiva.Text = piva;
 
-            
+
         }
 
         public string prendipivacliente(string cliente)
@@ -273,14 +253,14 @@ namespace GestionaleWindows
             string piva;
             try
             {
-             
+
                 conn = new MySql.Data.MySqlClient.MySqlConnection(connessione);
                 conn.Open();
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
                 cmd.CommandText = "Select piva from cliente_piva where nomecliente = @nomecli";
                 cmd.Parameters.AddWithValue("@nomecli", cliente);
                 cmd.Connection = conn;
-                piva = (string) cmd.ExecuteScalar();
+                piva = (string)cmd.ExecuteScalar();
 
                 conn.Close();
 
@@ -293,33 +273,26 @@ namespace GestionaleWindows
             }
         }
 
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void selezionato(object sender, KeyEventArgs e)
         {
+            if (e.KeyData == Keys.Enter)
+            {
+                // String selItem = this.textBox1.Text;
+                metodo();
+                prendidestinazionicliente(textBox3.Text);
+                riempipartitaiva(textBox3.Text);
+
+                string ultimabollacreata = ValoriStatici.prendiultimonumerobolla();
+                ultimabollacreatalabel.Text = ultimabollacreata;
+                textBox1.Focus();
+            }
         }
 
-        private void checkselezionato(object sender, EventArgs e)
+        private void testocambiato(object sender, EventArgs e)
         {
-        }
-
-
-        private void salvabolla(object sender, EventArgs e)
-        {
-            Bolla b = new Bolla();
-            b.numerodocumento = textboxnumerobolla.Text;
-            b.datadocumento = datascelta.Value;
-            b.nomecliente = textboxcliente.Text;
-            b.indirizzo = destinazionetextbox.Text;
-            b.cap = "";
-            b.piva = textboxpartitaiva.Text;
-            b.telefono = "";
-            b.peso = Double.Parse(textboxpeso.Text);
-            b.numerocolli = int.Parse(textboxnumerocolli.Text);
-            b.mezzo = listacheck.SelectedItem.ToString();
-            b.impacchettamento = textboxaspettobeni.Text;
-
-            ValoriStatici.aggiungibolla(b);
-            ValoriStatici.inseriscirighe(scelti,b.numerodocumento,b.datadocumento);
-
+            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Format("codicearticolo like '%{0}%'", textBox1.Text.Trim().Replace("'", "''"));
+            dataGridView1.Refresh();
         }
     }
 }
+
