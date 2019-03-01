@@ -39,6 +39,9 @@
     <Reference Include="Google.Protobuf">
       <HintPath>..\..\..\..\Desktop\connector net\v4.5.2\Google.Protobuf.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\..\..\..\Desktop\connector net\v4.5.2\MySql.Data.dll</HintPath>
     </Reference>
@@ -188,6 +191,7 @@
     <EmbeddedResource Include="FatturaControllo.resx">
       <DependentUpon>FatturaControllo.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
