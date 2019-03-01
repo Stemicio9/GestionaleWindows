@@ -293,6 +293,11 @@ namespace GestionaleWindows
             (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Format("codicearticolo like '%{0}%'", textBox1.Text.Trim().Replace("'", "''"));
             dataGridView1.Refresh();
         }
+
+        private void salvafattura(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

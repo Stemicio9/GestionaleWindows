@@ -78,10 +78,12 @@ namespace GestionaleWindows
         {
             string result = "";
             int max = 0;
-
+            
    
             foreach (DataRow row in bolle.Rows)
             {
+                DateTime data = (DateTime)row["datadocumento"];
+                if (!data.Year.Equals(DateTime.Now.Year)) { continue; }
                 try
                 {
                     int curr = int.Parse((string)row["numerodocumento"]);
@@ -122,7 +124,28 @@ namespace GestionaleWindows
             row["mezzo"] = b.mezzo;
             row["impacchettamento"] = b.impacchettamento;
 
-            salvabolle();
+            if (esistebollastessonumerostessoanno(b.numerodocumento, b.datadocumento))
+            {
+                string anno = ((DateTime)b.datadocumento).Year.ToString();
+                MessageBox.Show("ESISTE GIA' LA BOLLA N " + b.numerodocumento + " NELL'ANNO " + anno);
+            }
+            else
+            {
+                salvabolle();
+            }
+        }
+
+        public static bool esistebollastessonumerostessoanno(string numerodocumento, DateTime datadocumento)
+        {
+            foreach (DataRow row in bolle.Rows)
+            {
+                if (row["numerodocumento"].Equals(numerodocumento))
+                {
+                    DateTime data = (DateTime)row["datadocumento"];
+                    if (data.Year.Equals(datadocumento.Year)) { return true; }
+                }
+            }
+            return false;
         }
 
 
@@ -167,6 +190,9 @@ namespace GestionaleWindows
                 throw;
             }
         }
+
+
+        
 
 
 
