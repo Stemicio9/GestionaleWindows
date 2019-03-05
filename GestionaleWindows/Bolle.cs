@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace GestionaleWindows
 {
@@ -321,5 +324,81 @@ namespace GestionaleWindows
             ValoriStatici.inseriscirighe(scelti,b.numerodocumento,b.datadocumento);
 
         }
+
+        //metodo che lega la creazione di un pdf al button con etichetta: "crea PDF"
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
+            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream("Test1.pdf", FileMode.Create));
+            doc.Open(); // apre il documento su cui scrivere
+
+            //scrive qualcosa:
+            Paragraph par1 = new Paragraph("Riga 1 di paragrafo 1\n");
+
+            doc.Add(par1);
+            doc.Close();
+        }
+
+        //metodo per il button "crea PDF e esporta datagridview1"
+        //si serve di exportGridToPDF
+        private void button3_Click(object sender, EventArgs e)
+        {
+            exportGridToPDF(dataGridView1, "test con la grid");
+        }
+
+        //esporta la grid in un pdf
+        public void exportGridToPDF(DataGridView dgw, String fileName)
+        {
+            BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1250, BaseFont.EMBEDDED);
+
+            //quella giusta:
+            //PdfPTable pdfPTable = new PdfPTable(dgw.Columns.Count);
+            //da canc:
+            PdfPTable pdfPTable = new PdfPTable(5);
+
+            pdfPTable.DefaultCell.Padding = 3;
+            pdfPTable.WidthPercentage = 100;
+            pdfPTable.HorizontalAlignment = Element.ALIGN_LEFT;
+            pdfPTable.DefaultCell.BorderWidth = 1;
+
+            iTextSharp.text.Font textFont = new iTextSharp.text.Font(bf, 10, iTextSharp.text.Font.NORMAL);
+
+            //aggiunge l header:
+            foreach (DataGridViewColumn column in dgw.Columns)
+            {
+                PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText, textFont));
+                //cell.BackgroundColor = new iTextSharp.text.Color(240, 240, 240);
+                pdfPTable.AddCell(cell);
+            }
+
+            //Add datarow
+            foreach(DataGridViewRow row in dgw.Rows)
+            {
+                foreach(DataGridViewCell cell in row.Cells)
+                {
+                    pdfPTable.AddCell(new Phrase(cell.Value.ToString(), textFont));
+                }
+            }
+
+            var saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = fileName;
+            saveFileDialog.DefaultExt = ".pdf";
+            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using(FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                {
+                    Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 10f);
+                    PdfWriter.GetInstance(pdfDoc, stream);
+                    pdfDoc.Open();
+                    pdfDoc.Add(pdfPTable);
+                    pdfDoc.Close();
+                    stream.Close();
+                }
+            }
+
+
+        }//chiusura exportGridToPdf(
+
+
     }
 }
