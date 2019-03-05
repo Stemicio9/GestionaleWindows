@@ -35,7 +35,7 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
-            this.fatturaControllo1 = new GestionaleWindows.FatturaControllo();
+            this.fsss = new GestionaleWindows.FatturaControllo();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,18 +72,18 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "label1";
             // 
-            // fatturaControllo1
+            // fsss
             // 
-            this.fatturaControllo1.Location = new System.Drawing.Point(0, 59);
-            this.fatturaControllo1.Name = "fatturaControllo1";
-            this.fatturaControllo1.Size = new System.Drawing.Size(1315, 342);
-            this.fatturaControllo1.TabIndex = 4;
+            this.fsss.Location = new System.Drawing.Point(0, 59);
+            this.fsss.Name = "fsss";
+            this.fsss.Size = new System.Drawing.Size(1315, 342);
+            this.fsss.TabIndex = 4;
             // 
             // ModificaFattura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.fatturaControllo1);
+            this.Controls.Add(this.fsss);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nomefile);
             this.Controls.Add(this.sceglifilebutton);
@@ -103,6 +103,6 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Label label1;
-        private FatturaControllo fatturaControllo1;
+        private FatturaControllo fsss;
     }
 }
