@@ -34,6 +34,7 @@
             this.nomefile = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.fatturaControllo1 = new GestionaleWindows.FatturaControllo();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -62,18 +63,28 @@
             this.nomefile.TabIndex = 1;
             this.nomefile.Text = "Nessun file selezionato";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1235, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "label1";
+            // 
             // fatturaControllo1
             // 
-            this.fatturaControllo1.Location = new System.Drawing.Point(3, 59);
+            this.fatturaControllo1.Location = new System.Drawing.Point(0, 59);
             this.fatturaControllo1.Name = "fatturaControllo1";
-            this.fatturaControllo1.Size = new System.Drawing.Size(1357, 352);
-            this.fatturaControllo1.TabIndex = 2;
+            this.fatturaControllo1.Size = new System.Drawing.Size(1315, 342);
+            this.fatturaControllo1.TabIndex = 4;
             // 
             // ModificaFattura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.fatturaControllo1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.nomefile);
             this.Controls.Add(this.sceglifilebutton);
             this.Name = "ModificaFattura";
@@ -91,6 +102,7 @@
         private System.Windows.Forms.Label nomefile;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.Label label1;
         private FatturaControllo fatturaControllo1;
     }
 }

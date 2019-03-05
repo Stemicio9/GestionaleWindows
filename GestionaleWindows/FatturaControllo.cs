@@ -16,7 +16,7 @@ namespace GestionaleWindows
         {
             InitializeComponent();
             prendiclienti();
-            //   metodo();
+            //   metodo(); 
             // ciao
             scelti.Columns.Add("codicearticolo", typeof(String));
             scelti.Columns.Add("nomearticolo", typeof(String));

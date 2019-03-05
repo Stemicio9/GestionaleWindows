@@ -81,7 +81,7 @@ namespace GestionaleWindows
             
             string nomecliente = fatt.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici.Anagrafica.Denominazione;
             string piva = fatt.FatturaElettronicaHeader.CessionarioCommittente.DatiAnagrafici.IdFiscaleIVA.IdCodice;
-            fatturaControllo1.inserisciClienteDaFuori(nomecliente,piva);
+            fsss.inserisciClienteDaFuori(nomecliente,piva);
             mostraprodottiaschermo();
   
         }
@@ -128,7 +128,7 @@ namespace GestionaleWindows
                 foreach(FatturaElettronica.FatturaElettronicaBody.DatiBeniServizi.DettaglioLinee linea in corr.DatiBeniServizi.DettaglioLinee)
                 {
                     
-                    DataRow row = fatturaControllo1.scelti.NewRow();
+                    DataRow row = fsss.scelti.NewRow();
 
                     row["nomearticolo"] = linea.Descrizione;
                     row["prezzolistino"] = linea.PrezzoUnitario;
@@ -136,7 +136,7 @@ namespace GestionaleWindows
                     row["iva"] = linea.AliquotaIVA;
                     row["quantita"] = linea.Quantita;
 
-                    fatturaControllo1.scelti.Rows.Add(row);
+                    fsss.scelti.Rows.Add(row);
                 }
             }
         }
