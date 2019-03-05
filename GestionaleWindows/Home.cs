@@ -83,6 +83,7 @@ namespace GestionaleWindows
         Articoli articoli = new Articoli();
         Clienti clienti = new Clienti();
         Informazioni info = new Informazioni();
+        ModificaFattura modifica = new ModificaFattura();
 
         private void settaTuttoInvisibile()
         {
@@ -161,5 +162,26 @@ namespace GestionaleWindows
             info.Visible = true;
             pannellocentrale.Controls.Add(info);
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            settaTuttoInvisibile();
+            pannellocentrale.Controls.Clear();
+            modifica.Visible = true;
+            pannellocentrale.Controls.Add(modifica);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+
+            
+        }
+
+ 
+
+
+
+    
     }
 }

@@ -343,18 +343,18 @@ namespace GestionaleWindows
         //si serve di exportGridToPDF
         private void button3_Click(object sender, EventArgs e)
         {
-            exportGridToPDF(dataGridView1, "test con la grid");
+            exportGridToPDF(scelti, "testgrid");
         }
 
         //esporta la grid in un pdf
-        public void exportGridToPDF(DataGridView dgw, String fileName)
+        public void exportGridToPDF(DataTable dgw, String fileName)
         {
             BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1250, BaseFont.EMBEDDED);
 
             //quella giusta:
-            //PdfPTable pdfPTable = new PdfPTable(dgw.Columns.Count);
+            PdfPTable pdfPTable = new PdfPTable(dgw.Columns.Count);
             //da canc:
-            PdfPTable pdfPTable = new PdfPTable(5);
+           // PdfPTable pdfPTable = new PdfPTable(5);
 
             pdfPTable.DefaultCell.Padding = 3;
             pdfPTable.WidthPercentage = 100;
@@ -364,28 +364,26 @@ namespace GestionaleWindows
             iTextSharp.text.Font textFont = new iTextSharp.text.Font(bf, 10, iTextSharp.text.Font.NORMAL);
 
             //aggiunge l header:
-            foreach (DataGridViewColumn column in dgw.Columns)
+            foreach (DataColumn column in dgw.Columns)
             {
-                PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText, textFont));
+                PdfPCell cell = new PdfPCell(new Phrase(column.ColumnName, textFont));
                 //cell.BackgroundColor = new iTextSharp.text.Color(240, 240, 240);
                 pdfPTable.AddCell(cell);
             }
 
             //Add datarow
-            foreach(DataGridViewRow row in dgw.Rows)
+            foreach(DataRow row in dgw.Rows)
             {
-                foreach(DataGridViewCell cell in row.Cells)
+                foreach(Object cell in row.ItemArray)
                 {
-                    pdfPTable.AddCell(new Phrase(cell.Value.ToString(), textFont));
+                    pdfPTable.AddCell(new Phrase(cell.ToString(), textFont));
                 }
             }
 
-            var saveFileDialog = new SaveFileDialog();
-            saveFileDialog.FileName = fileName;
-            saveFileDialog.DefaultExt = ".pdf";
-            if(saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                using(FileStream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
+  
+
+            string percorsoprova = "C:\\Users\\GMC\\Desktop\\percorsopdfwindows\\nome.pdf";
+                using(FileStream stream = new FileStream(percorsoprova, FileMode.Create))
                 {
                     Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 10f);
                     PdfWriter.GetInstance(pdfDoc, stream);
@@ -394,11 +392,14 @@ namespace GestionaleWindows
                     pdfDoc.Close();
                     stream.Close();
                 }
-            }
+            
 
 
         }//chiusura exportGridToPdf(
 
+        private void Bolle_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace GestionaleWindows
             InitializeComponent();
             prendiclienti();
             //   metodo();
+            // ciao
             scelti.Columns.Add("codicearticolo", typeof(String));
             scelti.Columns.Add("nomearticolo", typeof(String));
             scelti.Columns.Add("prezzolistino", typeof(Decimal));
@@ -44,6 +45,7 @@ namespace GestionaleWindows
 
         }
 
+       
 
 
         public void visibile(object sender, EventArgs e)
@@ -52,7 +54,7 @@ namespace GestionaleWindows
         }
 
         MySql.Data.MySqlClient.MySqlConnection conn;
-        DataTable scelti = new DataTable();
+        public DataTable scelti = new DataTable();
         DataTable articoli = new DataTable();
         MySql.Data.MySqlClient.MySqlDataAdapter adapter = new MySql.Data.MySqlClient.MySqlDataAdapter();
         MySql.Data.MySqlClient.MySqlCommandBuilder cmbl;
@@ -243,7 +245,7 @@ namespace GestionaleWindows
         {
 
             string piva = prendipivacliente(nomecliente);
-            textboxpartitaiva.Text = piva;
+            textBox2.Text = piva;
 
 
         }
@@ -271,6 +273,18 @@ namespace GestionaleWindows
                 conn.Close();
                 throw;
             }
+        }
+
+        public void inserisciClienteDaFuori(string nomecliente, string piva)
+        {
+            textBox3.Text = nomecliente;
+            metodo();
+            prendidestinazionicliente(nomecliente);
+            textBox2.Text = piva;
+
+            string ultimabollacreata = ValoriStatici.prendiultimonumerobolla();
+            ultimabollacreatalabel.Text = ultimabollacreata;
+            textBox1.Focus();
         }
 
         private void selezionato(object sender, KeyEventArgs e)

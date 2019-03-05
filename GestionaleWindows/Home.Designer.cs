@@ -32,6 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -43,7 +44,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pannellocentrale = new System.Windows.Forms.Panel();
-            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.modificafattura = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -71,6 +73,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.panel1.Controls.Add(this.modificafattura);
             this.panel1.Controls.Add(this.button9);
             this.panel1.Controls.Add(this.button8);
             this.panel1.Controls.Add(this.button7);
@@ -85,6 +88,23 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 620);
             this.panel1.TabIndex = 4;
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.Black;
+            this.button9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button9.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.button9.FlatAppearance.BorderSize = 0;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.ForeColor = System.Drawing.Color.LightGray;
+            this.button9.Location = new System.Drawing.Point(0, 473);
+            this.button9.Margin = new System.Windows.Forms.Padding(0);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(200, 60);
+            this.button9.TabIndex = 14;
+            this.button9.Text = "Informazioni";
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button8
             // 
@@ -237,6 +257,7 @@
             // pannellocentrale
             // 
             this.pannellocentrale.AutoSize = true;
+            this.pannellocentrale.Controls.Add(this.button10);
             this.pannellocentrale.Controls.Add(this.button1);
             this.pannellocentrale.Controls.Add(this.dataGridView1);
             this.pannellocentrale.Dock = System.Windows.Forms.DockStyle.Left;
@@ -245,22 +266,32 @@
             this.pannellocentrale.Size = new System.Drawing.Size(890, 567);
             this.pannellocentrale.TabIndex = 6;
             // 
-            // button9
+            // button10
             // 
-            this.button9.BackColor = System.Drawing.Color.Black;
-            this.button9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button9.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.button9.FlatAppearance.BorderSize = 0;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.ForeColor = System.Drawing.Color.LightGray;
-            this.button9.Location = new System.Drawing.Point(0, 473);
-            this.button9.Margin = new System.Windows.Forms.Padding(0);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(200, 60);
-            this.button9.TabIndex = 14;
-            this.button9.Text = "Informazioni";
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.button10.Location = new System.Drawing.Point(282, 60);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(259, 85);
+            this.button10.TabIndex = 4;
+            this.button10.Text = "button10";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // modificafattura
+            // 
+            this.modificafattura.BackColor = System.Drawing.Color.Black;
+            this.modificafattura.Dock = System.Windows.Forms.DockStyle.Top;
+            this.modificafattura.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.modificafattura.FlatAppearance.BorderSize = 0;
+            this.modificafattura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.modificafattura.ForeColor = System.Drawing.Color.LightGray;
+            this.modificafattura.Location = new System.Drawing.Point(0, 533);
+            this.modificafattura.Margin = new System.Windows.Forms.Padding(0);
+            this.modificafattura.Name = "modificafattura";
+            this.modificafattura.Size = new System.Drawing.Size(200, 60);
+            this.modificafattura.TabIndex = 15;
+            this.modificafattura.Text = "Modifica Fattura";
+            this.modificafattura.UseVisualStyleBackColor = false;
+            this.modificafattura.Click += new System.EventHandler(this.button11_Click);
             // 
             // Home
             // 
@@ -301,6 +332,8 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button modificafattura;
     }
 }
 

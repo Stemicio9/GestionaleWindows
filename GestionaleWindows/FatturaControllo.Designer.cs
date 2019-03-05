@@ -227,7 +227,7 @@
             this.listaarticoliscelti.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listaarticoliscelti.Location = new System.Drawing.Point(765, 104);
             this.listaarticoliscelti.Name = "listaarticoliscelti";
-            this.listaarticoliscelti.Size = new System.Drawing.Size(494, 219);
+            this.listaarticoliscelti.Size = new System.Drawing.Size(600, 219);
             this.listaarticoliscelti.TabIndex = 33;
             // 
             // label3

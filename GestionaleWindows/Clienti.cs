@@ -194,8 +194,5 @@ namespace GestionaleWindows
 
         }
 
-
-
-
     }
 }
